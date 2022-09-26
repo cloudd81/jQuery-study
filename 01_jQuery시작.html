@@ -1,0 +1,54 @@
+<!DOCTYPE html>  
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>01_jQuery시작.html</title>
+    </head>
+    <body>
+        <!-- 
+            참조 : https://www.w3schools.com/jquery/default.asp
+
+            ● [자바 스크립트 기반 오픈소스(.js)]
+             - jQuery, Bootstrap, moment, AJAX, AngularJS, react 등
+             - 시각화 : chart.js, d3.js 등
+            
+            ● [jQuery] : 자바스크립스 오픈 소스
+
+            ● [jQuery 오픈소스 사용방법]
+
+            1) jQuery라이브러리를 제공하는 해당사이트 직접 링크
+                <head>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+                </head>
+            
+            2) jQuery라이브러리를 직접 다운 받아서 사용(추천)
+                https://jquery.com/download/
+                ->Download the compressed, production jQuery 3.6.0
+                ->우클릭 -> 다른이름으로 링크 저장
+                ->jquery-3.6.0.min.js 다운 
+         -->
+        
+        <!-- jQuery import -->
+        <script src="jquery-3.6.1.min.js"></script>
+        <script>
+            // jQuery 시작
+
+            // 1) jQuery() 축약형 -> $
+            // alert($);
+
+            // 2)
+            // $(document).ready(function(){
+            //     alert("jQuery시작");
+            //     alert($);
+            // });
+
+            // 3)
+            $(function(){
+                alert("jQuery시작");
+                alert($);
+            });
+
+        </script>
+        
+    </body>
+</html>
