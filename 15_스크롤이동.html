@@ -1,0 +1,117 @@
+<!DOCTYPE html>  
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>15_스크롤이동.html</title>
+        <!-- jQuery import -->
+        <script src="jquery-3.6.1.min.js"></script>
+        <link rel="stylesheet" href="../CSS/reset.css"/>
+        <style>
+            @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+            html {overflow-y: scroll;}
+            body {font:14px 'Nanum Gothic',dotum, sans-serif; margin:0; background: #333;}
+            .hide {width:0; height:0; margin:0; border:0; padding:0; font-size:0; line-height:0; overflow: hidden; visibility: hidden;}
+            #footer {border-top:1px solid darkslategray; width:1000px; height:120px; text-align: center; color: white; line-height: 100px;}            
+            #topBtn a {position: fixed; bottom:20px; margin-left:1010px; display: block; width:50px; height:50px; border-radius: 25px; background-image: url(../images/ball.png); background-size: 50px; color:black;
+                       font-size:10px; font-weight: bold; box-shadow:0 0 4px #333; text-align: center; line-height:50px; opacity: .5; text-decoration: none; text-shadow: 0 0 4px;}
+            #topBtn a:hover {opacity: 1; transition: .4s ease;}
+            
+            #wrap {width: 1000px; margin: auto; border: 1px solid #333;}
+            #header {width: 1000px; height: 122px; position: fixed; top: 0; background: #fff;}
+            #header>h1 {background-color: rgb(238, 28, 70); height: 150px; text-align: center; font-size: 36px; color: chocolate; line-height: 70px; font-weight: bold;}
+            
+            #nav {background-color: #333; height:50px; border:1px solid darkslategray; border-left:none; border-right:none; text-align: center;}
+            #nav li {display: inline-block; margin: 0 3px 0 3px;}
+            #nav li a {display: block; padding: 0 10px 0 10px; height: 50px; line-height: 50px; color: whitesmoke; font-size:17px; font-weight:bold; text-decoration: none;}
+            /* #nav li.now a {background: rgb(227, 227, 109); color: #fff;} */
+
+            #idx1 a:hover {background: rgb(227, 227, 109); color: #fff; text-decoration: underline;}
+            #idx2 a:hover {background: rgb(17, 164, 17); color: #fff; text-decoration: underline;}
+            #idx3 a:hover {background: rgb(255, 58, 58); color: #fff; text-decoration: underline;}
+            #idx4 a:hover {background: lightseagreen; color: #fff; text-decoration: underline;}
+            #idx5 a:hover {background: darkmagenta; color: #fff; text-decoration: underline;}
+
+            /* content */
+            #content {width:1000px; min-height:400px; padding-top:121px; color:#fff;}
+            #content img {display: block; margin-left: auto; margin-right: auto; width: 40%; line-height: 600px;}
+            #content h2 {font-size:200px; font-weight:bold; text-align: center;}
+            
+            #box1 {width: 1000px; height: 600px; background:antiquewhite;}
+            #box1>img {padding-top: 120px;}
+            #box2 {width:1000px; height:600px; background:#3F51B5; line-height:800px;}
+            #box2 img {padding-top: 80px;}
+            #box3 {width:1000px; height:600px; background:#03A9F4;}
+            #box3 img {padding-top: 80px;}
+            #box4 {width:1000px; height:600px; background:#8BC34A;}
+            #box4 img {padding-top: 80px;}
+            #box5 {width:1000px; height:600px; background:#FFC107;}
+            #box5 img {padding-top: 80px;}
+            
+        </style>
+    </head>
+    <body>
+        <div id="wrap">
+            <div id="header">
+                <h1><img src="../images/pokemonlogo.png"></h1>
+                <div id="nav">
+                    <h2 class="hide">메인 메뉴</h2>
+                    <ul>
+                        <li id="idx1" class="now"><a href="">피카츄</a></li>
+                        <li id="idx2"><a href="">이상해씨</a></li>
+                        <li id="idx3"><a href="">파이리</a></li>
+                        <li id="idx4"><a href="">꼬부기</a></li>
+                        <li id="idx5"><a href="">?????</a></li>
+                    </ul>
+                </div> <!-- nav end-->
+            </div> <!-- header end -->
+            
+            <div id="content">
+                <div id="box1" class="show"><img src="../images/004.png"></div>
+                <div id="box2" class="show"><img src="../images/001.png"></div>
+                <div id="box3" class="show"><img src="../images/002.png"></div>
+                <div id="box4" class="show"><img src="../images/003.png"></div>
+                <div id="box5" class="show"><img src="../images/008.png"></div>
+            </div> <!-- content end -->
+
+            <div id="footer">
+                &copy; 2022 CLOUDD
+            </div> <!-- footer end -->
+
+            <div id="topBtn">
+                <a>TOP</a>
+            </div> <!-- topBtn end -->
+
+        </div> <!-- wrap end -->
+
+        <script>
+            $("#nav li").click(function(e){ // e 클릭 이벤트를 받는 객체
+                // alert("test");
+                // alert(e);
+
+                // <a>의 기본 동작을 방지한다. 클릭해도 리로드가 일어나지 않음.
+                e.preventDefault();
+
+                // 사용자가 클릭한 li 요소의 index 얻기
+                let idx = $(this).index();
+                // alert(idx);
+                // 각 box1~5의 위쪽 여백
+                // alert($("#box1").offset().top);
+                // alert($("#box2").offset().top);
+                // alert($("#box3").offset().top);
+                // alert($("#box4").offset().top);
+                // alert($("#box5").offset().top);
+                let bTop = $("#box"+ (idx+1)).offset().top;
+                
+                // 스크롤 애니메이션 처리
+                $("body, html").animate({scrollTop:bTop-202},300);
+
+            }); // click() end
+            
+            $("#topBtn").click(function(){
+                $("body, html").animate({scrollTop:0},400);
+            })
+            
+        </script>
+
+    </body>
+</html>
